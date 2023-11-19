@@ -5,10 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { configureStore } from "@reduxjs/toolkit";
 import { Provider } from "react-redux";
+import SpinnerSlice from "./redux/SpinnerSlice";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 export let store = configureStore({
-  reducer: {},
+  reducer: {
+    spinnerSlice: SpinnerSlice,
+  },
 });
 root.render(
   <Provider store={store}>
