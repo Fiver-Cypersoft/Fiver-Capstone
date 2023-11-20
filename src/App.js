@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 import Spinner from "./component/Spinner/Spinner";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Profile from "./page/Profile/Profile";
 import Layout from "./page/Template/Layout";
 
