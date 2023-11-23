@@ -5,3 +5,15 @@
     width: 14px;
     
 }
+.profile{
+    display: flex;
+    .information{
+        width: 35%;
+    }
+    .job-hired{
+        width: 65%;
+        .job-hired-image{
+            width: 30%;
+        }
+    }
+}
