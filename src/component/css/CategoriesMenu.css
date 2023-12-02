@@ -1,0 +1,118 @@
+.CategoriesMenu {
+  display: none;
+  transition: all 0.5s ease;
+  border-bottom: 1px solid #e4e5e7;
+  background-color: white;
+  position: fixed;
+  top: 81px;
+  left: 0;
+  right: 0;
+  z-index: 990;
+}
+@media screen and (max-width: 576px) {
+  .CategoriesMenu {
+    border: none;
+  }
+}
+.CategoriesMenu .categoriesmenu_wrapper {
+  width: 100%;
+  background-color: #fff;
+  display: none;
+}
+@media only screen and (min-width: 600px) {
+  .CategoriesMenu .categoriesmenu_wrapper {
+    border-bottom: 1px solid #e4e5e7;
+    display: block;
+  }
+}
+.CategoriesMenu .categoriesmenu_row {
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 0 32px;
+}
+@media only screen and (min-width: 1160px) {
+  .CategoriesMenu .categoriesmenu_row {
+    margin: 0 auto;
+    max-width: 1400px;
+  }
+}
+.CategoriesMenu .categoriesmenu_ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  padding: 0;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .links {
+  position: relative;
+  color: #62646a;
+  display: block;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 8px 0;
+  text-decoration: none;
+  width: -moz-max-content;
+  width: max-content;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .links::after {
+  content: "";
+  position: absolute;
+  background: #1dbf73;
+  height: 3px;
+  bottom: 0;
+  left: 0;
+  width: 0px;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .links:hover {
+  color: #1dbf73;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .links:hover::after {
+  width: 100%;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .links:focus {
+  color: #1dbf73;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .links:focus::after {
+  width: 100%;
+  background: #1dbf73;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .categoriesmenu_li_jobdetail {
+  display: none;
+  background-color: #fff;
+  position: absolute;
+  padding: 20px 30px;
+  border: 1px solid #e4e5e7;
+  box-shadow: 0px 1px 3px #dadbdd;
+  z-index: 1001;
+  text-align: left;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .categoriesmenu_li_jobdetail .categoriesmenu_li_jobdetail_detail {
+  font-size: 16px;
+  color: #404145;
+  padding: 8px 0;
+  margin: 0;
+  font-weight: 500;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .categoriesmenu_li_jobdetail .categoriesmenu_li_jobdetail_detail_job {
+  font-size: 16px;
+  color: #62646a;
+  padding: 0;
+  margin: 0 0 5px 0;
+  font-weight: 300;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li .categoriesmenu_li_jobdetail .categoriesmenu_li_jobdetail_detail_job:hover {
+  color: #1dbf73;
+}
+.CategoriesMenu .categoriesmenu_ul .categoriesmenu_li:hover .categoriesmenu_li_jobdetail {
+  display: block;
+}
+
+.CategoriesMenu-active {
+  transition: all 0.5s ease;
+  background-color: transparent;
+  display: block;
+}/*# sourceMappingURL=CategoriesMenu.css.map */

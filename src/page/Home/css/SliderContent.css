@@ -1,0 +1,116 @@
+.slider-content {
+  position: absolute;
+  left: 60px;
+  top: 200px;
+  z-index: 100;
+}
+@media only screen and (max-width: 1200px) {
+  .slider-content {
+    position: absolute;
+    left: 60px;
+    top: 170px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  .slider-content {
+    position: absolute;
+    left: 60px;
+    top: 180px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .slider-content {
+    position: absolute;
+    left: 0;
+    top: 200px;
+  }
+}
+.slider-content .searchLeft {
+  max-width: 52%;
+}
+@media only screen and (max-width: 992px) {
+  .slider-content .searchLeft {
+    max-width: none !important;
+  }
+}
+@media only screen and (max-width: 576px) {
+  .slider-content .searchLeft {
+    max-width: unset;
+    position: absolute;
+    top: -130px;
+  }
+}
+.slider-content .searchLeft h1 {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+@media only screen and (max-width: 768px) {
+  .slider-content .searchLeft h1 {
+    font-size: 30px;
+  }
+}
+.slider-content .searchLeft form {
+  height: 48px;
+  margin-bottom: 24px;
+}
+@media only screen and (max-width: 576px) {
+  .slider-content .searchLeft form {
+    display: none !important;
+  }
+}
+.slider-content .searchLeft form .form-control {
+  border-radius: 0.375rem 0 0 0.375rem;
+  padding-left: 25px;
+  height: 48px;
+}
+.slider-content .searchLeft form .form-control:focus {
+  border: 1px solid #62646a;
+  box-shadow: none;
+}
+.slider-content .searchLeft form .btn {
+  border-radius: 0 0.375rem 0.375rem 0;
+  font-weight: 700;
+  padding: 12px 24px;
+  background-color: #198754;
+}
+.slider-content .searchLeft form .btn:hover {
+  background-color: #157347;
+}
+@media only screen and (max-width: 768px) {
+  .slider-content .searchLeft form .btn {
+    display: none !important;
+  }
+}
+.slider-content .searchLeft .popular {
+  height: 27px;
+}
+@media only screen and (max-width: 992px) {
+  .slider-content .searchLeft .popular {
+    display: none !important;
+  }
+}
+.slider-content .searchLeft .popular span {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 27px;
+  margin-right: 12px;
+}
+.slider-content .searchLeft .popular .btn {
+  border: 1px solid #fff;
+  border-radius: 40px;
+  padding: 0 12px;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 27px;
+  margin-right: 12px;
+}
+.slider-content .searchLeft .popular .btn:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}/*# sourceMappingURL=SliderContent.css.map */

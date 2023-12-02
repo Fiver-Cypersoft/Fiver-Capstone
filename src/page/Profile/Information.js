@@ -11,7 +11,7 @@ import {
   TwitterOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import "./style/Information.scss"; // Path to your Sass file
+import "./style/Profile.scss"; // Path to your Sass file
 
 export default function Information() {
   return (
