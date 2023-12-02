@@ -1,0 +1,102 @@
+.slider-content {
+  position: absolute;
+  left: 60px;
+  top: 200px;
+  z-index: 100;
+  @media only screen and (max-width: 1200px) {
+      position: absolute;
+      left: 60px;
+      top: 170px;
+  }
+  @media only screen and (max-width: 992px) {
+      position: absolute;
+      left: 60px;
+      top: 180px;
+      
+  }
+  @media only screen and (max-width: 768px) {
+      position: absolute;
+      left: 0;
+      top: 200px;
+  }
+  .searchLeft {
+    max-width: 52%;
+    @media only screen and (max-width: 992px) {
+        max-width: none !important;
+    }
+    @media only screen and (max-width: 576px) {
+      max-width: unset;
+      position: absolute;
+      top: -130px;
+    }
+    h1 {
+      color: #fff;
+      font-size: 48px;
+      font-weight: 600;
+      line-height: 1.2;
+      @media only screen and (max-width: 992px) {
+        // font-size: 30px;
+    }
+      @media only screen and (max-width: 768px) {
+          font-size: 30px;
+      }
+    }
+    form {
+      height: 48px ;
+      margin-bottom: 24px;
+      @media only screen and (max-width: 576px) {
+        display: none !important;
+      }
+      .form-control {
+        border-radius: 0.375rem 0 0 0.375rem;
+        padding-left: 25px;
+        height: 48px;
+        &:focus {
+          border: 1px solid #62646a;
+          box-shadow: none;
+        }
+      }
+      .btn {
+        border-radius: 0 0.375rem 0.375rem 0;
+        font-weight: 700;
+        padding: 12px 24px;
+        background-color: #198754;
+        &:hover {
+          background-color: #157347;
+        }
+        @media only screen and (max-width: 768px) {
+            display: none !important;
+        }
+      }
+    }
+    .popular {
+      height: 27px;
+      @media only screen and (max-width: 992px) {
+        display: none !important;
+    }
+      span {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 27px;
+        margin-right: 12px;
+      }
+      .btn {
+        border: 1px solid #fff;
+        border-radius: 40px;
+        padding: 0 12px;
+        white-space: nowrap;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 27px;
+        margin-right: 12px;
+        &:hover {
+          background-color: white;
+          color: black;
+          cursor: pointer;
+        }
+      }
+    }
+  }}
+

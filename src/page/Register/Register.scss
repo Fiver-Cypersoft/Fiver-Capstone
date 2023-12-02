@@ -1,0 +1,22 @@
+.register {
+    margin-top: 150px;
+    margin-bottom: 50px;
+    .container_register {
+        background: #fff;
+        border: 1px solid rgba(0,0,0,.05);
+        border-radius: 20px;
+        box-shadow: 0 15px 16.83px 0.17px rgba(0,0,0,.05);
+        margin: 0 auto;
+        width: 900px;
+        .register-content {
+            display: flex;
+            justify-content: center;
+            .form-register{}
+            .banner-register{
+                @media screen and (max-width: 992px) {
+                    display: none;
+                  }
+            }
+        }
+    }
+}
