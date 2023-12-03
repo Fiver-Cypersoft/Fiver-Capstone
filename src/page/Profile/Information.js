@@ -1,5 +1,5 @@
 import { Avatar, Card, Divider, Flex, Space } from "antd";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AntDesignOutlined,
   ArrowRightOutlined,
@@ -7,21 +7,34 @@ import {
   FacebookFilled,
   GithubOutlined,
   GoogleOutlined,
-  SmallDashOutlined,
   TwitterOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import { useSelector } from "react-redux";
 import "./style/Profile.scss"; // Path to your Sass file
+import { profileUser } from "../../api/api";
 
 export default function Information() {
+  const [info, setInfo] = useState({});
+
+  useEffect(() => {
+    profileUser
+      .getInfo()
+      .then((res) => {
+        setInfo(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <div className="container">
       <div>
         <Space direction="vertical" size={16}>
           <Card>
             <Flex gap="middle" align="center" vertical>
-              <Avatar size={100} icon={<AntDesignOutlined />}></Avatar>
-              <p className="card-email font-bold">chau@gmail.com</p>
+              <Avatar src={info.avatar} size={100} icon={<AntDesignOutlined />}></Avatar>
+              <p className="card-email font-bold">{info.name}</p>
               <EditOutlined />
               <Divider />
 
@@ -73,22 +86,22 @@ export default function Information() {
           <Card
             size="small"
             style={{
-              width: 300,
+              width: 400,
             }}
           >
             <strong>Description</strong>
             <div className="space-y-5">
               <Flex wrap="wrap" justify="space-between">
                 <span className="text-xs">Name:</span>
-                <span className="text-xs">Ch00ou</span>
+                <span className="text-xs">{info.name}</span>
               </Flex>
               <Flex wrap="wrap" justify="space-between">
                 <span className="text-xs">Phone:</span>
-                <span className="text-xs">32132132132</span>
+                <span className="text-xs">{info.phone}</span>
               </Flex>
               <Flex wrap="wrap" justify="space-between">
                 <span className="text-xs">Birthday:</span>
-                <span className="text-xs">Chou</span>
+                <span className="text-xs">{info.birthday}</span>
               </Flex>
             </div>
             <Divider></Divider>

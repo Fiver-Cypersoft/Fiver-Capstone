@@ -7,12 +7,13 @@
 }
 .profile{
     display: flex;
+    flex-wrap: wrap;
     padding-top: 150px;
     .information{
-        width: 35%;
+        flex: 1 0 10rem;
     }
     .job-hired{
-        width: 65%;
+        flex: 1 0 10rem;
         .job-hired-image{
             width: 30%;
         }

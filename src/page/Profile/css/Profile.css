@@ -8,13 +8,14 @@
 
 .profile {
   display: flex;
+  flex-wrap: wrap;
   padding-top: 150px;
 }
 .profile .information {
-  width: 35%;
+  flex: 1 0 10rem;
 }
 .profile .job-hired {
-  width: 65%;
+  flex: 1 0 10rem;
 }
 .profile .job-hired .job-hired-image {
   width: 30%;

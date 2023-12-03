@@ -19,7 +19,7 @@ export const https = axios.create({
   baseURL: BASE_URL,
   headers: {
     TokenCybersoft: TOKEN_CYBER,
-    Authorization: `${userLocalStorage.get()?.accessToken}`,
+    token: `${userLocalStorage.get()?.token}`,
     timeout: 1000,
   },
 });
@@ -32,7 +32,7 @@ https.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error);
-  }
+  },
 );
 // Add a response interceptor
 https.interceptors.response.use(
@@ -43,5 +43,5 @@ https.interceptors.response.use(
   function (error) {
     store.dispatch(setLoadingOff());
     return Promise.reject(error);
-  }
+  },
 );

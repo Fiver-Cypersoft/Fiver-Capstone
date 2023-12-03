@@ -1,4 +1,5 @@
 import { BASE_URL, https } from "./config";
+import { userLocalStorage } from "./localService";
 
 export const authSevr = {
   signin: (info) => https.post(`${BASE_URL}/auth/signin`, info),
@@ -10,6 +11,11 @@ export const loaiCVSevr = {
 };
 
 export const congViecServ = {
-  getMenuLoaiCV: () =>
-    https.get(`${BASE_URL}/cong-viec/lay-menu-loai-cong-viec`),
+  getMenuLoaiCV: () => https.get(`${BASE_URL}/cong-viec/lay-menu-loai-cong-viec`),
+};
+
+//profile
+export const profileUser = {
+  getInfo: () => https.get(`${BASE_URL}/users/${userLocalStorage.get()?.user.id}`),
+  getCongViecDaThue: () => https.get(`${BASE_URL}/thue-cong-viec/lay-danh-sach-da-thue`),
 };
