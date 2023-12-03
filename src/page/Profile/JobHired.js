@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, Flex, Space } from "antd";
+import { Card, Flex, Space, message } from "antd";
 import { profileUser } from "../../api/api";
 import { userLocalStorage } from "../../api/localService";
 
@@ -15,6 +15,31 @@ export default function JobHired() {
         console.log(err);
       });
   }, []);
+  let handleFetchJobList = () => {
+    profileUser
+      .getCongViecDaThue()
+      .then((res) => {
+        setJobList(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const handleDelete = (id) => {
+    profileUser
+      .deleteCongViecDaThue(id)
+      .then((res) => {
+        console.log(res);
+        message.success("delete success");
+        handleFetchJobList();
+      })
+      .catch((err) => {
+        message.error("delete fail");
+
+        console.log(err);
+      });
+  };
+
   const renderJobList = () => {
     return jobList.map((job) => {
       return (
@@ -42,7 +67,12 @@ export default function JobHired() {
                 <button className="bg-green-500 px-2 py-1 text-white font-bold rounded">
                   View detail
                 </button>
-                <button className="bg-red-500 px-2 py-1 text-white font-bold rounded">
+                <button
+                  onClick={() => {
+                    handleDelete(job.id);
+                  }}
+                  className="bg-red-500 px-2 py-1 text-white font-bold rounded"
+                >
                   Delete
                 </button>
               </Flex>
