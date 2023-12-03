@@ -19,4 +19,5 @@ export const profileUser = {
   getInfo: () => https.get(`${BASE_URL}/users/${userLocalStorage.get()?.user.id}`),
   getCongViecDaThue: () => https.get(`${BASE_URL}/thue-cong-viec/lay-danh-sach-da-thue`),
   deleteCongViecDaThue: (id) => https.delete(`${BASE_URL}/thue-cong-viec/${id}`),
+  uploadAvatar: (avatar) => https.post(`${BASE_URL}/users/upload-avatar`, avatar),
 };

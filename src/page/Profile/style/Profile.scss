@@ -11,6 +11,28 @@
     padding-top: 150px;
     .information{
         flex: 1 0 10rem;
+        .add-avatar{
+            display: none;
+        }
+        .upload-file{
+            border-radius:51%;
+
+        }
+        .upload-file:hover{
+            opacity: 0.8;
+            transition: all 0.2s ease-in;
+            .add-avatar{
+                display: inline-block;
+                position: absolute;
+                left: 50%;
+                top:50%;
+                transform: translate(-50%, -50%);
+                color:rgb(0, 0, 0);
+                font-size: 30px;
+               
+            }
+        }
+        
     }
     .job-hired{
         flex: 1 0 10rem;

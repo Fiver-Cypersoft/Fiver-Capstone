@@ -1,21 +1,41 @@
-import { Avatar, Card, Divider, Flex, Space } from "antd";
+import {
+  Avatar,
+  Button,
+  Card,
+  DatePicker,
+  Divider,
+  Flex,
+  Form,
+  Input,
+  Modal,
+  Radio,
+  Row,
+  Space,
+  Upload,
+  message,
+} from "antd";
 import React, { useEffect, useState } from "react";
 import {
-  AntDesignOutlined,
   ArrowRightOutlined,
+  CameraFilled,
   EditOutlined,
   FacebookFilled,
   GithubOutlined,
   GoogleOutlined,
+  LoadingOutlined,
+  MailOutlined,
+  PhoneOutlined,
+  PlusOutlined,
   TwitterOutlined,
+  UploadOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { useSelector } from "react-redux";
 import "./style/Profile.scss"; // Path to your Sass file
 import { profileUser } from "../../api/api";
 
 export default function Information() {
   const [info, setInfo] = useState({});
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     profileUser
@@ -27,15 +47,167 @@ export default function Information() {
         console.log(err);
       });
   }, []);
+  // avatar
+  const fetchInfo = () => {
+    profileUser
+      .getInfo()
+      .then((res) => {
+        setInfo(res.data.content);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const customRequest = ({ file }) => {
+    let formData = new FormData();
+    formData.append("formFile", file);
+    profileUser
+      .uploadAvatar(formData)
+      .then((res) => {
+        console.log(res);
+        fetchInfo();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  //modal EDIT
+  const showModal = () => {
+    setOpen(true);
+  };
+  const handleOk = (e) => {
+    console.log(e);
+    setOpen(false);
+  };
+  const handleCancel = (e) => {
+    console.log(e);
+    setOpen(false);
+  };
+  //
+
   return (
     <div className="container">
+      <Modal
+        centered
+        open={open}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okButtonProps={{
+          disabled: false,
+          className: "text-white bg-blue-500",
+        }}
+        cancelButtonProps={{
+          disabled: false,
+        }}
+      >
+        <p className="text-black font-medium text-center text-xl">UPDATE USER</p>
+        <Divider></Divider>
+
+        <div>
+          <Form
+            name="demo-form"
+            onFinish={handleOk}
+            // labelCol={{ span: 4 }}
+            // wrapperCol={{ span: 14 }}
+          >
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  type: "email",
+                  message: "Please enter a valid email!",
+                },
+              ]}
+            >
+              <Input prefix={<MailOutlined />} />
+            </Form.Item>
+
+            <Form.Item
+              label="Phone"
+              name="phone"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your phone number!",
+                },
+              ]}
+            >
+              <Input prefix={<PhoneOutlined />} />
+            </Form.Item>
+
+            <Form.Item
+              label="Name"
+              name="name"
+              rules={[
+                {
+                  required: true,
+                  message: "Please enter your name!",
+                },
+              ]}
+            >
+              <Input prefix={<UserOutlined />} />
+            </Form.Item>
+
+            <Form.Item label="Birthday" name="birthday">
+              <DatePicker style={{ width: "100%" }} />
+            </Form.Item>
+
+            <Form.Item label="Gender" name="gender">
+              <Radio.Group>
+                <Radio value="male">Male</Radio>
+                <Radio value="female">Female</Radio>
+                <Radio value="other">Other</Radio>
+              </Radio.Group>
+            </Form.Item>
+
+            <Flex gap={5}>
+              <Form.Item
+                label="Certification"
+                name="certification"
+                rules={[
+                  {
+                    required: false,
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+
+              <Form.Item
+                label="Skills"
+                name="skills"
+                rules={[
+                  {
+                    required: false,
+                    message: "Please enter your name!",
+                  },
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Flex>
+          </Form>
+        </div>
+      </Modal>
       <div>
         <Space direction="vertical" size={16}>
           <Card>
             <Flex gap="middle" align="center" vertical>
-              <Avatar src={info.avatar} size={100} icon={<AntDesignOutlined />}></Avatar>
+              <div className="relative upload-file">
+                <Upload
+                  customRequest={customRequest}
+                  showUploadList={false}
+                  accept="image/*" // Allow only image files
+                >
+                  <Avatar size={150} src={info.avatar} style={{ cursor: "pointer" }}></Avatar>
+
+                  <CameraFilled className="add-avatar" />
+                </Upload>
+              </div>
               <p className="card-email font-bold">{info.name}</p>
-              <EditOutlined />
               <Divider />
 
               <div className="w-full">
@@ -89,6 +261,10 @@ export default function Information() {
               width: 400,
             }}
           >
+            <div className="text-right">
+              <EditOutlined onClick={() => showModal()} />
+            </div>
+
             <strong>Description</strong>
             <div className="space-y-5">
               <Flex wrap="wrap" justify="space-between">
@@ -113,10 +289,16 @@ export default function Information() {
             </div>
             <Divider />
             <strong>Skills</strong>
+            {info.skill?.map((skill) => {
+              return <p>{skill}</p>;
+            })}
             <Divider />
             <strong>Education</strong>
             <Divider />
             <strong>Certification</strong>
+            {info.certification?.map((cer) => {
+              return <p>{cer}</p>;
+            })}
             <Divider />
             <strong>Linked Acounts</strong>
             <div className="text-xs space-y-3 mt-3">
