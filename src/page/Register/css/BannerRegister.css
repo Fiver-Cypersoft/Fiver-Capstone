@@ -1,0 +1,8 @@
+.register-image {
+  padding: 30px;
+  overflow: hidden;
+  width: 50%;
+}
+.register-image figure img {
+  width: 100%;
+}/*# sourceMappingURL=BannerRegister.css.map */

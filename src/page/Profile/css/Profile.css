@@ -1,0 +1,22 @@
+.card-email {
+  font-size: 20px;
+}
+
+.location-icon {
+  width: 14px;
+}
+
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 150px;
+}
+.profile .information {
+  flex: 1 0 10rem;
+}
+.profile .job-hired {
+  flex: 1 0 10rem;
+}
+.profile .job-hired .job-hired-image {
+  width: 30%;
+}/*# sourceMappingURL=Profile.css.map */

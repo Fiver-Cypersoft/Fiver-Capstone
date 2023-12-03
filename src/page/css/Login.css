@@ -1,0 +1,15 @@
+.login {
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+.login .container_login {
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 20px;
+  box-shadow: 0 15px 16.83px 0.17px rgba(0, 0, 0, 0.05);
+  margin: 0 auto;
+  width: 900px;
+}
+.login .container_login .login-content {
+  display: flex;
+}/*# sourceMappingURL=Login.css.map */

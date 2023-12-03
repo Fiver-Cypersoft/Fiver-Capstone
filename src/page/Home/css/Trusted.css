@@ -1,0 +1,24 @@
+.trusted-by {
+  position: relative;
+  background-color: #fafafa;
+  max-width: 100%;
+}
+
+.trusted-by-logo {
+  list-style: none;
+}
+.trusted-by-logo .li {
+  margin: 10px;
+  max-width: 15%;
+}
+
+.height-3 {
+  height: 70px;
+}
+
+.trusted-by-text {
+  display: block;
+  padding-right: 20px;
+  color: #b5b6ba;
+  font-weight: 600;
+}/*# sourceMappingURL=Trusted.css.map */
