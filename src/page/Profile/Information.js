@@ -22,12 +22,9 @@ import {
   FacebookFilled,
   GithubOutlined,
   GoogleOutlined,
-  LoadingOutlined,
   MailOutlined,
   PhoneOutlined,
-  PlusOutlined,
   TwitterOutlined,
-  UploadOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import "./style/Profile.scss"; // Path to your Sass file
@@ -36,7 +33,11 @@ import { profileUser } from "../../api/api";
 export default function Information() {
   const [info, setInfo] = useState({});
   const [open, setOpen] = useState(false);
-
+  const [radioValue, setRadioValue] = useState(info.gender);
+  const onChange = (e) => {
+    console.log("radio checked", e.target.value);
+    setRadioValue(e.target.value);
+  };
   useEffect(() => {
     profileUser
       .getInfo()
@@ -76,29 +77,49 @@ export default function Information() {
   const showModal = () => {
     setOpen(true);
   };
-  const handleOk = (e) => {
-    console.log(e);
-    setOpen(false);
-  };
+  const handleOk = (e) => {};
   const handleCancel = (e) => {
     console.log(e);
     setOpen(false);
   };
+  //Form
+  const onFinish = (values) => {
+    let infoEdit = {
+      id: info.id,
+      name: values.name,
+      email: values.email,
+      birthday: values.birthday,
+      gender: values.gender,
+    };
+    profileUser
+      .editInfo(info.id, infoEdit)
+      .then((res) => {
+        console.log(res);
+        message.success("Edit successfully");
+        fetchInfo();
+        setOpen(false);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const onFinishFailed = (errorInfo) => {
+    console.log("Failed:", errorInfo);
+  };
   //
 
   return (
-    <div className="container">
+    <div className="container ">
       <Modal
         centered
         open={open}
         onOk={handleOk}
         onCancel={handleCancel}
         okButtonProps={{
-          disabled: false,
-          className: "text-white bg-blue-500",
+          style: { display: "none" },
         }}
         cancelButtonProps={{
-          disabled: false,
+          style: { display: "none" },
         }}
       >
         <p className="text-black font-medium text-center text-xl">UPDATE USER</p>
@@ -107,13 +128,16 @@ export default function Information() {
         <div>
           <Form
             name="demo-form"
-            onFinish={handleOk}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}
             // labelCol={{ span: 4 }}
             // wrapperCol={{ span: 14 }}
           >
             <Form.Item
               label="Email"
               name="email"
+              initialValue={info.email}
+              disabled={true}
               rules={[
                 {
                   required: true,
@@ -128,6 +152,7 @@ export default function Information() {
             <Form.Item
               label="Phone"
               name="phone"
+              initialValue={info.phone}
               rules={[
                 {
                   required: true,
@@ -141,6 +166,7 @@ export default function Information() {
             <Form.Item
               label="Name"
               name="name"
+              initialValue={info.name}
               rules={[
                 {
                   required: true,
@@ -151,15 +177,14 @@ export default function Information() {
               <Input prefix={<UserOutlined />} />
             </Form.Item>
 
-            <Form.Item label="Birthday" name="birthday">
-              <DatePicker style={{ width: "100%" }} />
+            <Form.Item label="Birthday" name="birthday" initialValue={info.birthday}>
+              <Input style={{ width: "100%" }} />
             </Form.Item>
 
-            <Form.Item label="Gender" name="gender">
-              <Radio.Group>
-                <Radio value="male">Male</Radio>
-                <Radio value="female">Female</Radio>
-                <Radio value="other">Other</Radio>
+            <Form.Item label="gender" name="gender">
+              <Radio.Group defaultValue={info.gender}>
+                <Radio value={true}>Male</Radio>
+                <Radio value={false}>Female</Radio>
               </Radio.Group>
             </Form.Item>
 
@@ -178,7 +203,7 @@ export default function Information() {
 
               <Form.Item
                 label="Skills"
-                name="skills"
+                name="skill"
                 rules={[
                   {
                     required: false,
@@ -188,6 +213,21 @@ export default function Information() {
               >
                 <Input />
               </Form.Item>
+            </Flex>
+            <Flex justify="flex-end" gap={5}>
+              <Form.Item>
+                <Button type="primary" className="bg-blue-400" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+              <Button
+                type="button"
+                className="bg-red-500 text-white hover:bg-red-600"
+                htmlType="submit"
+                onClick={handleCancel}
+              >
+                Close
+              </Button>
             </Flex>
           </Form>
         </div>
@@ -207,7 +247,7 @@ export default function Information() {
                   <CameraFilled className="add-avatar" />
                 </Upload>
               </div>
-              <p className="card-email font-bold">{info.name}</p>
+              <p className="card-email font-bold">{info.email}</p>
               <Divider />
 
               <div className="w-full">
@@ -278,6 +318,10 @@ export default function Information() {
               <Flex wrap="wrap" justify="space-between">
                 <span className="text-xs">Birthday:</span>
                 <span className="text-xs">{info.birthday}</span>
+              </Flex>
+              <Flex wrap="wrap" justify="space-between">
+                <span className="text-xs">Gender:</span>
+                <span className="text-xs">{info.gender ? "Male" : "Female"}</span>
               </Flex>
             </div>
             <Divider></Divider>

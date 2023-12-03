@@ -18,7 +18,6 @@ export const BASE_URL = "https://fiverrnew.cybersoft.edu.vn/api";
 export const https = axios.create({
   baseURL: BASE_URL,
   headers: {
-    "Content-Type": "multipart/form-data",
     TokenCybersoft: TOKEN_CYBER,
     token: `${userLocalStorage.get()?.token}`,
     timeout: 1000,
