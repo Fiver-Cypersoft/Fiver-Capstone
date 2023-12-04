@@ -145,7 +145,7 @@ export default function Navbar() {
       );
     } else {
       return (
-        <NavLink to={"/login"} className="no-underline">
+        <NavLink to={"/login"}>
           <span href="" className="btn-header-res !text-sm">
             Sign in
           </span>
@@ -183,34 +183,14 @@ export default function Navbar() {
         <div className="header_row">
           <div className="left">
             <>
-              <button
-                className="mr-5 text-2xl text-black btnBars"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasWithBothOptions"
-                aria-controls="offcanvasWithBothOptions"
-              >
-                <i className="fa fa-bars" />
-              </button>
-              <div
-                className="offcanvas offcanvas-start"
-                data-bs-scroll="true"
-                tabIndex={-1}
-                id="offcanvasWithBothOptions"
-                aria-labelledby="offcanvasWithBothOptionsLabel"
-              >
+              {/* Offcanvas Sidebar */}
+              <div className="offcanvas offcanvas-start !z-[10000]" id="demo">
                 <div className="offcanvas-header">
-                  <h5
-                    className="offcanvas-title"
-                    id="offcanvasWithBothOptionsLabel"
-                  >
-                    {renderItemNav()}
-                  </h5>
+                  <>{renderItemNav()}</>
                   <button
                     type="button"
                     className="btn-close text-reset"
                     data-bs-dismiss="offcanvas"
-                    aria-label="Close"
                   />
                 </div>
                 <div className="offcanvas-body">
@@ -229,43 +209,15 @@ export default function Navbar() {
                   <li>
                     <a href="#top">Orders</a>
                   </li>
-                  <div className="dropdown mt-3">
-                    <span
-                      className="dropdown-toggle"
-                      id="dropdownMenuButton"
+                  <div className="dropdown">
+                    <li
+                      // type="button"
+                      className="dropdown-toggle !text-[24px]"
                       data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                      style={{
-                        listStyle: "none",
-                        margin: "0 10px",
-                        padding: "15px 6px",
-                        transition: "0.3s",
-                        fontWeight: 600,
-                        fontSize: 16,
-                        color: "#74767e",
-                        cursor: "pointer",
-                      }}
                     >
-                      <a
-                        href="#top"
-                        style={{
-                          color: "#62646a",
-                          fontSize: "24px",
-                          fontWeight: 600,
-                          marginBottom: "16px",
-                          paddingBottom: "20px",
-                          borderBottom: "1px solid #e4e5e7",
-                          textDecoration: "none",
-                        }}
-                      >
-                        Help &amp; Resources
-                      </a>
-                    </span>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton"
-                      style={{}}
-                    >
+                      Dropdown button
+                    </li>
+                    <ul className="dropdown-menu border-white">
                       <li>
                         <a className="dropdown-item" href="#top">
                           Help Center
@@ -281,16 +233,16 @@ export default function Navbar() {
                           Fiverr Blogs
                         </a>
                       </li>
-                      <div className="tW6GKQA">
-                        <div className="Wb8wmFx" />
-                      </div>
                       <li>
-                        <a className="dropdown-item" href="#top">
+                        <hr className="dropdown-divider"></hr>
+                      </li>
+                      <li>
+                        <a className="dropdown-item-text" href="#top">
                           Ask the Community
                         </a>
                       </li>
                       <li>
-                        <a className="dropdown-item" href="#top">
+                        <a className="dropdown-item-text" href="#top">
                           Contact Support
                         </a>
                       </li>
@@ -298,6 +250,15 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+              {/* Button to open the offcanvas sidebar */}
+              <button
+                className="mr-5 text-2xl text-black btnBars"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#demo"
+              >
+                <i className="fa fa-bars" />
+              </button>
             </>
 
             <div className="header_logo cursor-pointer">

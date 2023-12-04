@@ -40,31 +40,3 @@
     font-weight: 500;
     color: #003912;
   }
-
-  @media only screen and (max-width: 1200px) {
-    .slider-content {
-      position: absolute;
-      left: 60px;
-      top: 170px;
-    }
-    .trusted-by {
-      position: relative;
-      top: -40px;
-    }
-    .text-block {
-      display: none;
-    }
-    .modal-1 {
-      justify-content: center;
-    }
-    .display-from-lg {
-      display: none;
-    }
-  }
-
-  @media (min-width: 576px){
-
-    .container, .container-sm {
-        max-width: 540px;
-    }
-  }

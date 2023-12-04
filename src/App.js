@@ -7,6 +7,7 @@ import Register from "./page/Register/Register";
 import Categories from "./page/Categories/Categories";
 import Layout from "./page/Template/Layout";
 import Profile from "./page/Profile/Profile";
+import Title from "./page/title";
 
 export const route = {
   home: {
@@ -14,6 +15,14 @@ export const route = {
     element: (
       <Layout>
         <Home />
+      </Layout>
+    ),
+  },
+  title: {
+    path: "/title/:id",
+    element: (
+      <Layout>
+        <Title />
       </Layout>
     ),
   },
