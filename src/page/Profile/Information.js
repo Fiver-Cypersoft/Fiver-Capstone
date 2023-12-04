@@ -10,6 +10,7 @@ import {
   Modal,
   Radio,
   Row,
+  Select,
   Space,
   Upload,
   message,
@@ -29,15 +30,12 @@ import {
 } from "@ant-design/icons";
 import "./style/Profile.scss"; // Path to your Sass file
 import { profileUser } from "../../api/api";
+import { Option } from "antd/es/mentions";
 
 export default function Information() {
   const [info, setInfo] = useState({});
   const [open, setOpen] = useState(false);
-  const [radioValue, setRadioValue] = useState(info.gender);
-  const onChange = (e) => {
-    console.log("radio checked", e.target.value);
-    setRadioValue(e.target.value);
-  };
+
   useEffect(() => {
     profileUser
       .getInfo()
@@ -48,6 +46,7 @@ export default function Information() {
         console.log(err);
       });
   }, []);
+
   // avatar
   const fetchInfo = () => {
     profileUser
@@ -90,6 +89,8 @@ export default function Information() {
       email: values.email,
       birthday: values.birthday,
       gender: values.gender,
+      certification: values.certification,
+      skill: values.skill,
     };
     profileUser
       .editInfo(info.id, infoEdit)
@@ -130,14 +131,14 @@ export default function Information() {
             name="demo-form"
             onFinish={onFinish}
             onFinishFailed={onFinishFailed}
-            // labelCol={{ span: 4 }}
-            // wrapperCol={{ span: 14 }}
+            labelCol={{ span: 6 }}
+            wrapperCol={{ span: 14 }}
           >
             <Form.Item
               label="Email"
               name="email"
               initialValue={info.email}
-              disabled={true}
+              disabled
               rules={[
                 {
                   required: true,
@@ -149,31 +150,11 @@ export default function Information() {
               <Input prefix={<MailOutlined />} />
             </Form.Item>
 
-            <Form.Item
-              label="Phone"
-              name="phone"
-              initialValue={info.phone}
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter your phone number!",
-                },
-              ]}
-            >
+            <Form.Item option label="Phone" name="phone" initialValue={info.phone}>
               <Input prefix={<PhoneOutlined />} />
             </Form.Item>
 
-            <Form.Item
-              label="Name"
-              name="name"
-              initialValue={info.name}
-              rules={[
-                {
-                  required: true,
-                  message: "Please enter your name!",
-                },
-              ]}
-            >
+            <Form.Item label="Name" name="name" initialValue={info.name} option>
               <Input prefix={<UserOutlined />} />
             </Form.Item>
 
@@ -181,59 +162,69 @@ export default function Information() {
               <Input style={{ width: "100%" }} />
             </Form.Item>
 
-            <Form.Item label="gender" name="gender">
+            <Form.Item label="Gender" name="gender">
               <Radio.Group defaultValue={info.gender}>
                 <Radio value={true}>Male</Radio>
                 <Radio value={false}>Female</Radio>
               </Radio.Group>
             </Form.Item>
 
-            <Flex gap={5}>
-              <Form.Item
-                label="Certification"
-                name="certification"
-                rules={[
-                  {
-                    required: false,
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+            <Form.Item
+              label="Certification"
+              name="certification"
+              rules={[
+                {
+                  required: false,
+                },
+              ]}
+            >
+              <Select mode="tags" placeholder="Select or create" defaultValue={info.certification}>
+                {info.certification?.map((option) => (
+                  <Option key={option} value={option}>
+                    {option}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
 
-              <Form.Item
-                label="Skills"
-                name="skill"
-                rules={[
-                  {
-                    required: false,
-                    message: "Please enter your name!",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Flex>
-            <Flex justify="flex-end" gap={5}>
-              <Form.Item>
-                <Button type="primary" className="bg-blue-400" htmlType="submit">
-                  Submit
-                </Button>
-              </Form.Item>
+            <Form.Item
+              label="Skills"
+              name="skill"
+              rules={[
+                {
+                  required: false,
+                  message: "Please enter your skills!",
+                },
+              ]}
+            >
+              <Select mode="tags" placeholder="Select or create" defaultValue={info.skill}>
+                {info.skill?.map((option) => (
+                  <Option key={option} value={option}>
+                    {option}
+                  </Option>
+                ))}
+              </Select>
+            </Form.Item>
+
+            <Form.Item wrapperCol={{ offset: 6, span: 14 }}>
+              <Button type="primary" className="bg-blue-400" htmlType="submit">
+                Submit
+              </Button>
+
               <Button
                 type="button"
-                className="bg-red-500 text-white hover:bg-red-600"
+                className="bg-red-500 text-white hover:bg-red-600 ml-5"
                 htmlType="submit"
                 onClick={handleCancel}
               >
                 Close
               </Button>
-            </Flex>
+            </Form.Item>
           </Form>
         </div>
       </Modal>
       <div>
-        <Space direction="vertical" size={16}>
+        <Space direction="vertical" size={16} className="info-all">
           <Card>
             <Flex gap="middle" align="center" vertical>
               <div className="relative upload-file">
@@ -295,17 +286,14 @@ export default function Information() {
               </div>
             </Flex>
           </Card>
-          <Card
-            size="small"
-            style={{
-              width: 400,
-            }}
-          >
-            <div className="text-right">
-              <EditOutlined onClick={() => showModal()} />
-            </div>
+          <Card size="small" className="info-all">
+            <Flex justify="space-between">
+              <strong>Description</strong>
+              <div>
+                <EditOutlined onClick={() => showModal()} />
+              </div>
+            </Flex>
 
-            <strong>Description</strong>
             <div className="space-y-5">
               <Flex wrap="wrap" justify="space-between">
                 <span className="text-xs">Name:</span>
@@ -362,7 +350,6 @@ export default function Information() {
                 <TwitterOutlined /> <a>twitter</a>
               </p>
             </div>
-            <Divider />
           </Card>
         </Space>
       </div>
