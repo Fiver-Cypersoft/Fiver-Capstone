@@ -37,10 +37,7 @@ export default function CategoriesHome() {
       <ul className="row justify-content-center">
         {logo.map(({ img }, index) => {
           return (
-            <li
-              key={index}
-              className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-5 text-center"
-            >
+            <li key={index} className="col-6 col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-5 text-center">
               <a href="/categories/graphics-design?source=hplo_cat_sec&pos=1">
                 <img
                   className="main-categories-img"

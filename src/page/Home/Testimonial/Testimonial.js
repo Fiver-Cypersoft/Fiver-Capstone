@@ -90,10 +90,7 @@ export default function Testimonial() {
                   <div className="modal-1 col-lg-12">
                     {videos}
                     <div className="text-block">
-                      <div
-                        className="d-flex align-items-center"
-                        style={{ paddingBottom: 16 }}
-                      >
+                      <div className="d-flex align-items-center" style={{ paddingBottom: 16 }}>
                         <h5>{title}</h5>
                         <span className="testimonial-logo">
                           <img

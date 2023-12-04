@@ -9,7 +9,7 @@ export default function VideoModal3() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const imgVideo = "https://demo5.cybersoft.edu.vn/img/testimonial2.png";
+  const imgVideo = "https://demo5.cybersoft.edu.vn/img/testimonial3.png";
   return (
     <>
       <Button className="modal-btn btn btn-none p-0" onClick={handleShow}>
