@@ -3,23 +3,36 @@ import "./Navbar.scss";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { userLocalStorage } from "../../api/localService";
+import { message } from "antd";
+import { profileUser } from "../../api/api";
 
 export default function Navbar() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [user, setUser] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
-  const { user } = useSelector((state) => state.userSlice);
+  // const { user } = useSelector((state) => state.userSlice);
 
   let handleLogOut = () => {
     userLocalStorage.remove();
     window.location.reload();
   };
+  useEffect(() => {
+    profileUser
+      .getInfo()
+      .then((res) => {
+        setUser(res.data.content);
+      })
+      .catch((err) => {
+        message.error("error");
+      });
+  }, []);
 
   const renderItem = () => {
     if (user) {
       return (
         <>
-          {user?.user.avatar ? (
+          {user?.avatar ? (
             <div className="dropdown dropstart">
               <button
                 type="button"
@@ -28,7 +41,7 @@ export default function Navbar() {
               >
                 <figure className="mb-0">
                   <img
-                    src={user?.user.avatar}
+                    src={user?.avatar}
                     alt="avatar"
                     className="avatar"
                     style={{
@@ -55,7 +68,7 @@ export default function Navbar() {
           ) : (
             <div className="dropdown dropstart">
               <button type="button" className="btn-success text-justify " data-bs-toggle="dropdown">
-                <p className="text uppercase my-0 mx-0">{user?.user.name}</p>
+                <p className="text uppercase my-0 mx-0">{user?.name}</p>
               </button>
               <ul className="dropdown-menu">
                 <li>
@@ -106,7 +119,7 @@ export default function Navbar() {
     if (user) {
       return (
         <div>
-          {user.user.avatar ? (
+          {user.avatar ? (
             <figure className="mb-0 flex">
               <img
                 src={user?.avatar}
@@ -115,14 +128,14 @@ export default function Navbar() {
                 style={{ borderRadius: 50, width: 50, height: 50 }}
               />
               <div className="flex flex-col items-start mx-3">
-                <h6 className="font-extrabold uppercase">{user?.user.name}</h6>
-                <p>{user?.user.email}</p>
+                <h6 className="font-extrabold uppercase">{user?.name}</h6>
+                <p>{user?.email}</p>
               </div>
             </figure>
           ) : (
             <div className="flex flex-col items-start my-3 mx-2">
-              <h6 className="font-extrabold uppercase">{user?.user.name}</h6>
-              <p>{user?.user.email}</p>
+              <h6 className="font-extrabold uppercase">{user?.name}</h6>
+              <p>{user?.email}</p>
             </div>
           )}
         </div>

@@ -18,7 +18,7 @@ export default function Spinner() {
         position: "fixed",
         top: 0,
         left: 0,
-        zIndex: 100,
+        zIndex: 10000,
       }}
     >
       <PacmanLoader size={150} color="#36d7b7" speedMultiplier={2} />

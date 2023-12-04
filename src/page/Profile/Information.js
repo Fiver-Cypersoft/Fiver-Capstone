@@ -2,14 +2,12 @@ import {
   Avatar,
   Button,
   Card,
-  DatePicker,
   Divider,
   Flex,
   Form,
   Input,
   Modal,
   Radio,
-  Row,
   Select,
   Space,
   Upload,
@@ -31,6 +29,7 @@ import {
 import "./style/Profile.scss"; // Path to your Sass file
 import { profileUser } from "../../api/api";
 import { Option } from "antd/es/mentions";
+import { userLocalStorage } from "../../api/localService";
 
 export default function Information() {
   const [info, setInfo] = useState({});
@@ -47,7 +46,7 @@ export default function Information() {
         setSkills(res.data.content.skill || []);
       })
       .catch((err) => {
-        console.log(err);
+        message.error("error");
       });
   }, []);
 
@@ -59,7 +58,7 @@ export default function Information() {
         setInfo(res.data.content);
       })
       .catch((err) => {
-        console.log(err);
+        message.error("error");
       });
   };
   const customRequest = ({ file }) => {
@@ -68,11 +67,11 @@ export default function Information() {
     profileUser
       .uploadAvatar(formData)
       .then((res) => {
-        console.log(res);
         fetchInfo();
+        window.location.href = "/profile";
       })
       .catch((err) => {
-        console.log(err);
+        message.error("error");
       });
   };
 
@@ -81,8 +80,6 @@ export default function Information() {
     setOpen(true);
   };
   const handleCancel = (e) => {
-    console.log("Info certification:", info.certification);
-    console.log("Info skills:", info.skill);
     fetchInfo();
     setCertification(info.certification);
     setSkills(info.skill);
@@ -102,7 +99,6 @@ export default function Information() {
     profileUser
       .editInfo(info.id, infoEdit)
       .then((res) => {
-        console.log(res);
         message.success("Edit successfully");
         fetchInfo();
         setCertification(infoEdit.certification);
@@ -110,11 +106,11 @@ export default function Information() {
         setOpen(false);
       })
       .catch((err) => {
-        console.log(err);
+        message.error("error");
       });
   };
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    message.error("error");
   };
   //
 

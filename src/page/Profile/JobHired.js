@@ -40,9 +40,9 @@ export default function JobHired() {
   };
 
   const renderJobList = () => {
-    return jobList.map((job) => {
+    return jobList.map((job, key) => {
       return (
-        <Card style={{ width: "750px" }}>
+        <Card key={key} style={{ width: "750px" }}>
           <Flex>
             <img className="job-hired-image" src={job.congViec.hinhAnh} alt="" />
             <div className="pl-5">
