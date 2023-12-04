@@ -5,46 +5,37 @@ export default function CategoriesHome() {
   const logo = [
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/graphics-design.d32a2f8.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/online-marketing.74e221b.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/writing-translation.32ebe2e.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/video-animation.f0d9d71.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/music-audio.320af20.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/programming.9362366.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/business.bbdf319.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/lifestyle.745b575.svg",
-      name: "Graphics &amp; Design",
     },
     {
       img: "https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/data.718910f.svg",
-      name: "Graphics &amp; Design",
     },
   ];
   return (
     <section className="main-categories container">
       <h2 className="margin">Explore the marketplace</h2>
       <ul className="row justify-content-center">
-        {logo.map(({ img, name }, index) => {
+        {logo.map(({ img }, index) => {
           return (
             <li
               key={index}
@@ -57,7 +48,7 @@ export default function CategoriesHome() {
                   alt="Graphics & Design"
                   loading="lazy"
                 />
-                {name}
+                Graphics &amp; Design
               </a>
             </li>
           );
