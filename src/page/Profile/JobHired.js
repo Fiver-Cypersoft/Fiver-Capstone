@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, Flex, Space, message } from "antd";
 import { profileUser } from "../../api/api";
-import { userLocalStorage } from "../../api/localService";
 
 export default function JobHired() {
   const [jobList, setJobList] = useState([]);

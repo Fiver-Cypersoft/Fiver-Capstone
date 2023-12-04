@@ -5,17 +5,51 @@
     width: 14px;
     
 }
+
 .profile{
     display: flex;
     flex-wrap: wrap;
-    padding-top: 150px;
+    padding: 150px 0;
+    justify-content: space-between;
     .information{
-        flex: 1 0 10rem;
+           .info-all{
+            width: 400px;
+           }
+        
+        flex:1 0 5rem;
+        
+        .add-avatar{
+            display: none;
+        }
+        .upload-file{
+            border-radius:51%;
+
+        }
+        .upload-file:hover{
+            opacity: 0.8;
+            transition: all 0.2s ease-in;
+            .add-avatar{
+                display: inline-block;
+                position: absolute;
+                left: 50%;
+                top:50%;
+                transform: translate(-50%, -50%);
+                color:rgb(0, 0, 0);
+                font-size: 30px;
+               
+            }
+        }
+        
     }
     .job-hired{
-        flex: 1 0 10rem;
+        flex:2 0 5rem;
+
         .job-hired-image{
             width: 30%;
         }
     }
+}
+@media only screen and (max-width: 1400px) {
+    .info-all{width: 100%;
+    margin-bottom: 20px;}
 }

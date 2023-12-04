@@ -6,7 +6,7 @@ export default function Profile() {
   return (
     <div className="profile container ">
       <div className="information">
-        <Information />
+        <Information key={Math.random()} />
       </div>
       <div className="job-hired">
         <JobHired />
