@@ -5,12 +5,19 @@
     width: 14px;
     
 }
+
 .profile{
     display: flex;
     flex-wrap: wrap;
-    padding-top: 150px;
+    padding: 150px 0;
+    justify-content: space-between;
     .information{
-        flex: 1 0 10rem;
+           .info-all{
+            width: 400px;
+           }
+        
+        flex:1 0 5rem;
+        
         .add-avatar{
             display: none;
         }
@@ -35,9 +42,14 @@
         
     }
     .job-hired{
-        flex: 1 0 10rem;
+        flex:2 0 5rem;
+
         .job-hired-image{
             width: 30%;
         }
     }
+}
+@media only screen and (max-width: 1400px) {
+    .info-all{width: 100%;
+    margin-bottom: 20px;}
 }
