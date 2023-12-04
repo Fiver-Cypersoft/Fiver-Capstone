@@ -2,12 +2,14 @@ import {
   Avatar,
   Button,
   Card,
+  DatePicker,
   Divider,
   Flex,
   Form,
   Input,
   Modal,
   Radio,
+  Row,
   Select,
   Space,
   Upload,
@@ -33,12 +35,15 @@ import { Option } from "antd/es/mentions";
 export default function Information() {
   const [info, setInfo] = useState({});
   const [open, setOpen] = useState(false);
-
+  const [certification, setCertification] = useState([]);
+  const [skills, setSkills] = useState([]);
   useEffect(() => {
     profileUser
       .getInfo()
       .then((res) => {
         setInfo(res.data.content);
+        setCertification(res.data.content.certification || []);
+        setSkills(res.data.content.skill || []);
       })
       .catch((err) => {
         console.log(err);
@@ -96,6 +101,8 @@ export default function Information() {
         console.log(res);
         message.success("Edit successfully");
         fetchInfo();
+        setCertification(infoEdit.certification);
+        setSkills(infoEdit.skill);
         setOpen(false);
       })
       .catch((err) => {
@@ -176,8 +183,14 @@ export default function Information() {
                 },
               ]}
             >
-              <Select mode="tags" placeholder="Select or create" defaultValue={info.certification}>
-                {info.certification?.map((option) => (
+              <Select
+                mode="tags"
+                placeholder="Select or create"
+                value={certification}
+                defaultValue={certification}
+                // onChange={(value) => setCertification(value)}
+              >
+                {certification.map((option) => (
                   <Option key={option} value={option}>
                     {option}
                   </Option>
@@ -195,15 +208,21 @@ export default function Information() {
                 },
               ]}
             >
-              <Select mode="tags" placeholder="Select or create" defaultValue={info.skill}>
-                {info.skill?.map((option) => (
+              <Select
+                mode="tags"
+                placeholder="Select or create"
+                value={skills}
+                defaultValue={skills}
+
+                // onChange={(value) => setSkills(value)}
+              >
+                {skills.map((option) => (
                   <Option key={option} value={option}>
                     {option}
                   </Option>
                 ))}
               </Select>
             </Form.Item>
-
             <Form.Item wrapperCol={{ offset: 6, span: 14 }}>
               <Button type="primary" className="bg-blue-400" htmlType="submit">
                 Submit
@@ -319,14 +338,14 @@ export default function Information() {
             </div>
             <Divider />
             <strong>Skills</strong>
-            {info.skill?.map((skill) => {
+            {skills.map((skill) => {
               return <p>{skill}</p>;
             })}
             <Divider />
             <strong>Education</strong>
             <Divider />
             <strong>Certification</strong>
-            {info.certification?.map((cer) => {
+            {certification.map((cer) => {
               return <p>{cer}</p>;
             })}
             <Divider />
