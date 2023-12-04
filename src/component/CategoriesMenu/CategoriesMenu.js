@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { congViecServ } from "../../api/api";
 import "./CategoriesMenu.scss";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, Link } from "react-router-dom";
 import { convertToSlug } from "../Header/utils";
 import { route } from "../../App";
 
@@ -42,8 +42,8 @@ export default function CategoriesMenu() {
   const renderItemDetail = (listItem) => {
     return listItem.map(({ id, tenChiTiet }) => {
       return (
-        <NavLink
-          to={makeUrlPath(id, tenChiTiet)}
+        <Link
+          to={`/categories/${id}`}
           key={id}
           style={{ textDecoration: "none" }}
         >
@@ -53,7 +53,7 @@ export default function CategoriesMenu() {
           >
             {tenChiTiet}
           </span>
-        </NavLink>
+        </Link>
       );
     });
   };
@@ -84,9 +84,9 @@ export default function CategoriesMenu() {
             {listTitle.slice(0, 6).map((item, index) => {
               return (
                 <div className="categoriesmenu_li" key={index}>
-                  <a className="links mb-0" href="#top">
+                  <Link className="links mb-0" to={`/title/${item.id}`}>
                     <p className="mb-0">{item.tenLoaiCongViec}</p>
-                  </a>
+                  </Link>
                   <div className="categoriesmenu_li_jobdetail categoriesmenu_li_jobdetail_1">
                     {renderTitelDetail(item.dsNhomChiTietLoai)}
                   </div>
