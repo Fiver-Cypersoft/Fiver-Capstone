@@ -35,7 +35,7 @@ const FormLogin = () => {
   return (
     <div>
       <div className="form_title mb-[50px]">
-        <h2 className="text-[#1dbf73] text-[2rem] ml-[50px] font-[700]">
+        <h2 className="text-[#1dbf73] text-[2rem] ml-[50px] font-[700] my-5">
           Sign In to Fiverr
         </h2>
       </div>

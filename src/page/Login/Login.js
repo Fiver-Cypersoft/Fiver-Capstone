@@ -8,8 +8,12 @@ export default function Login() {
     <div className="login">
       <div className="container_login">
         <div className="login-content">
-          <BannerLogin />
-          <FormLogin />
+          <div className="banner-login">
+            <BannerLogin />
+          </div>
+          <div className="form-login">
+            <FormLogin />
+          </div>
         </div>
       </div>
     </div>
