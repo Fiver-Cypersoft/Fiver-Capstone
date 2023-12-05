@@ -310,7 +310,6 @@ export default function Information() {
                 <EditOutlined onClick={() => showModal()} />
               </div>
             </Flex>
-
             <div className="space-y-5">
               <Flex wrap="wrap" justify="space-between">
                 <span className="text-xs">Name:</span>
@@ -342,9 +341,9 @@ export default function Information() {
               certification.map((cer) => {
                 return <p>{cer}</p>;
               })}
-
             <Divider />
             <strong>Education</strong>
+            <p>Cyper Academy</p>
             <Divider />
             <strong>Skills</strong>
             {skills &&
