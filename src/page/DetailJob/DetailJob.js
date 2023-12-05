@@ -7,7 +7,7 @@ export default function DetailJob() {
   const [comment, setComment] = useState([]);
 
   const { id } = useParams();
-
+  console.log(id);
   const getJobById = async () => {
     try {
       const result = await loaiCVSevr.getJobDetailById(id);
@@ -37,12 +37,7 @@ export default function DetailJob() {
           <div style={{ flex: 7 }}>
             <div className="flex mt-2 gap-2 items-center">
               <div>
-                <img
-                  className="rounded-full"
-                  src={job?.avatar}
-                  width={30}
-                  height={"auto"}
-                />
+                <img className="rounded-full" src={job?.avatar} width={30} height={"auto"} />
               </div>
               <div>
                 <p className="font-bold mb-0">{job?.tenNguoiTao}</p>
@@ -70,29 +65,25 @@ export default function DetailJob() {
                     </p>
                   );
                 })}
-                {[...Array(5 - job?.congViec?.saoCongViec || 0).keys()].map(
-                  (item) => {
-                    return (
-                      <p className="mb-0 flex items-center gap-2 text-[#aeaeae] font-bold">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 1792 1792"
-                          width="15"
-                          height="15"
-                        >
-                          <path
-                            fill="#aeaeae"
-                            d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                          ></path>
-                        </svg>
-                      </p>
-                    );
-                  }
-                )}
+                {[...Array(5 - job?.congViec?.saoCongViec || 0).keys()].map((item) => {
+                  return (
+                    <p className="mb-0 flex items-center gap-2 text-[#aeaeae] font-bold">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 1792 1792"
+                        width="15"
+                        height="15"
+                      >
+                        <path
+                          fill="#aeaeae"
+                          d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                        ></path>
+                      </svg>
+                    </p>
+                  );
+                })}
                 {job?.congViec?.saoCongViec}
-                <span className="text-[#b5b6ba] font-bold">
-                  ({job?.congViec?.danhGia})
-                </span>
+                <span className="text-[#b5b6ba] font-bold">({job?.congViec?.danhGia})</span>
               </div>
             </div>
             <div className="mt-4 w-[100%] overflow-hidden">
@@ -104,9 +95,7 @@ export default function DetailJob() {
             </div>
             <div className="mt-6">
               <h1 className="font-bold text-[24px]">About this Gig</h1>
-              <p className="mt-4 text-[18px] text-[#62646A]">
-                {job?.congViec?.moTa}
-              </p>
+              <p className="mt-4 text-[18px] text-[#62646A]">{job?.congViec?.moTa}</p>
             </div>
             <hr />
             <div>
@@ -114,63 +103,50 @@ export default function DetailJob() {
 
               <div className="flex mt-6 gap-3 items-center">
                 <div>
-                  <img
-                    className="rounded-full"
-                    src={job?.avatar}
-                    width={105}
-                    height={"auto"}
-                  />
+                  <img className="rounded-full" src={job?.avatar} width={105} height={"auto"} />
                 </div>
                 <div>
-                  <p className="font-bold mb-0 text-[20px]">
-                    {job?.tenNguoiTao}
-                  </p>
+                  <p className="font-bold mb-0 text-[20px]">{job?.tenNguoiTao}</p>
                   <p className="mb-0 font-bold text-[#74767E]">
                     Level {job?.congViec?.saoCongViec} Seller
                   </p>
                   <div className="flex gap-1">
-                    {[...Array(job?.congViec?.saoCongViec).keys()].map(
-                      (item) => {
-                        return (
-                          <p className="mb-0 flex items-center gap-2 text-[#ffbe5b] font-bold">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 1792 1792"
-                              width="15"
-                              height="15"
-                            >
-                              <path
-                                fill="#ffbe5b"
-                                d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                              ></path>
-                            </svg>
-                          </p>
-                        );
-                      }
-                    )}
-                    {[...Array(5 - job?.congViec?.saoCongViec || 0).keys()].map(
-                      (item) => {
-                        return (
-                          <p className="mb-0 flex items-center gap-2 text-[#aeaeae] font-bold">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 1792 1792"
-                              width="15"
-                              height="15"
-                            >
-                              <path
-                                fill="#aeaeae"
-                                d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
-                              ></path>
-                            </svg>
-                          </p>
-                        );
-                      }
-                    )}
+                    {[...Array(job?.congViec?.saoCongViec).keys()].map((item) => {
+                      return (
+                        <p className="mb-0 flex items-center gap-2 text-[#ffbe5b] font-bold">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 1792 1792"
+                            width="15"
+                            height="15"
+                          >
+                            <path
+                              fill="#ffbe5b"
+                              d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                            ></path>
+                          </svg>
+                        </p>
+                      );
+                    })}
+                    {[...Array(5 - job?.congViec?.saoCongViec || 0).keys()].map((item) => {
+                      return (
+                        <p className="mb-0 flex items-center gap-2 text-[#aeaeae] font-bold">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 1792 1792"
+                            width="15"
+                            height="15"
+                          >
+                            <path
+                              fill="#aeaeae"
+                              d="M1728 647q0 22-26 48l-363 354 86 500q1 7 1 20 0 21-10.5 35.5t-30.5 14.5q-19 0-40-12l-449-236-449 236q-22 12-40 12-21 0-31.5-14.5t-10.5-35.5q0-6 2-20l86-500-364-354q-25-27-25-48 0-37 56-46l502-73 225-455q19-41 49-41t49 41l225 455 502 73q56 9 56 46z"
+                            ></path>
+                          </svg>
+                        </p>
+                      );
+                    })}
                     {job?.congViec?.saoCongViec}
-                    <span className="text-[#b5b6ba] font-bold">
-                      ({job?.congViec?.danhGia})
-                    </span>
+                    <span className="text-[#b5b6ba] font-bold">({job?.congViec?.danhGia})</span>
                   </div>
                 </div>
               </div>
@@ -235,9 +211,8 @@ export default function DetailJob() {
           <div className="md:min-w-[428px] min-w-0" style={{ flex: 3 }}>
             <div className=" border p-4 text-[14px] text-[#64626A]">
               <p>
-                LinkedIn page US$10 LinkedIn business page create and setup 3
-                Days Delivery Target audience research Automated feed ads (DPA)
-                Ads analytical report 3 days
+                LinkedIn page US$10 LinkedIn business page create and setup 3 Days Delivery Target
+                audience research Automated feed ads (DPA) Ads analytical report 3 days
               </p>
               <div className="additional-info d-flex gap-4 mb-3">
                 <div className="delivery d-flex align-items-center gap-1 font-bold">
