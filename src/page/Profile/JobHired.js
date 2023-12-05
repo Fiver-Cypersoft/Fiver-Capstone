@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Card, Flex, Space, message } from "antd";
 import { profileUser } from "../../api/api";
+import { useNavigate } from "react-router-dom";
 
 export default function JobHired() {
   const [jobList, setJobList] = useState([]);
+  const navigate = useNavigate();
   useEffect(() => {
     profileUser
       .getCongViecDaThue()
@@ -63,7 +65,12 @@ export default function JobHired() {
                 <span>${job.congViec.giaTien}</span>
               </Flex>
               <Flex justify="flex-end" className="space-x-2">
-                <button className="bg-green-500 px-2 py-1 text-white font-bold rounded">
+                <button
+                  className="bg-green-500 px-2 py-1 text-white font-bold rounded"
+                  onClick={() => {
+                    navigate(`/detailJob/${job.congViec.id}`);
+                  }}
+                >
                   View detail
                 </button>
                 <button
