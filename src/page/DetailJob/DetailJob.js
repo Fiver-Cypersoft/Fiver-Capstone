@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { loaiCVSevr } from "../../api/api";
-
+import { congViecServ, loaiCVSevr } from "../../api/api";
+import "./DetailJob.scss"; // Path to your Sass file
+import moment from "moment";
+import { useSelector } from "react-redux";
 export default function DetailJob() {
   const [job, setJob] = useState({});
   const [comment, setComment] = useState([]);
-
+  const { user } = useSelector((state) => state.userSlice);
   const { id } = useParams();
   console.log(id);
   const getJobById = async () => {
@@ -17,6 +19,22 @@ export default function DetailJob() {
     }
   };
 
+  const thueCongviec = () => {
+    const body = {
+      maCongViec: job.congViec.id,
+      maNguoiThue: user.user.id,
+      ngayThue: moment().format("YYYY-M-D"),
+      hoanThanh: false,
+    };
+    congViecServ
+      .thueCongViec(body)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   const getCommentByJobId = async () => {
     try {
       const result = await loaiCVSevr.getCommentByJob(id);
@@ -281,7 +299,7 @@ export default function DetailJob() {
                 </ul>
               </div>
               <div className="check-out-footer">
-                <button type="button" className="submit">
+                <button type="button" className="submit" onClick={thueCongviec}>
                   Continue (US$10)
                 </button>
                 <a href="#compare" className="compare">
