@@ -5,16 +5,12 @@ import { authSevr } from "../../../api/api";
 import { userLocalStorage } from "../../../api/localService";
 import { useDispatch } from "react-redux";
 import { setLogin } from "../../../redux/slice/userSlice";
-import {
-  formRegister,
-  setFormLogin,
-} from "../../../redux/slice/loginFormSlice";
+import { formRegister, setFormLogin } from "../../../redux/slice/loginFormSlice";
 import "./FormLogin.scss";
 
 const FormLogin = () => {
   const dispatch = useDispatch();
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
     authSevr
       .signin(values)
       .then((res) => {
@@ -28,16 +24,13 @@ const FormLogin = () => {
         window.location.href = "/";
       })
       .catch((err) => {
-        console.log(err);
-        message.success("Đăng nhập thất bại");
+        message.error("Đăng nhập thất bại");
       });
   };
   return (
     <>
       <div className="form_title mb-[50px]">
-        <h2 className="text-[#1dbf73] text-[2rem] ml-[50px] font-[700] my-5">
-          Sign In to Fiverr
-        </h2>
+        <h2 className="text-[#1dbf73] text-[2rem] ml-[50px] font-[700] my-5">Sign In to Fiverr</h2>
       </div>
       <Form
         name="normal_login"

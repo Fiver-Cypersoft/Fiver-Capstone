@@ -4,6 +4,7 @@ import { congViecServ, loaiCVSevr } from "../../api/api";
 import "./DetailJob.scss"; // Path to your Sass file
 import moment from "moment";
 import { useSelector } from "react-redux";
+import { message } from "antd";
 export default function DetailJob() {
   const [job, setJob] = useState({});
   const [comment, setComment] = useState([]);
@@ -15,7 +16,7 @@ export default function DetailJob() {
       const result = await loaiCVSevr.getJobDetailById(id);
       setJob(result.data?.content?.[0]);
     } catch (error) {
-      console.log(error);
+      message.error("erorr");
     }
   };
 
@@ -29,10 +30,10 @@ export default function DetailJob() {
     congViecServ
       .thueCongViec(body)
       .then((res) => {
-        console.log(res);
+        message.success("thuê công việc thành công");
       })
       .catch((err) => {
-        console.log(err);
+        message.error("erorr");
       });
   };
   const getCommentByJobId = async () => {
