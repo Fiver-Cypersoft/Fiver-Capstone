@@ -8,6 +8,7 @@ import Categories from "./page/Categories/Categories";
 import Layout from "./page/Template/Layout";
 import Profile from "./page/Profile/Profile";
 import Title from "./page/title";
+import DetailJob from "./page/DetailJob/DetailJob";
 
 export const route = {
   home: {
@@ -23,6 +24,14 @@ export const route = {
     element: (
       <Layout>
         <Title />
+      </Layout>
+    ),
+  },
+  job: {
+    path: "/jobDetail/:id",
+    element: (
+      <Layout>
+        <DetailJob />
       </Layout>
     ),
   },

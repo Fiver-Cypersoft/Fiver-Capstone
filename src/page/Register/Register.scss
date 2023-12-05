@@ -8,23 +8,11 @@
         box-shadow: 0 15px 16.83px 0.17px rgba(0,0,0,.05);
         margin: 0 auto;
         width: 900px;
-        @media screen and (max-width: 992px) {
-            width: 100%;
-          }
         .register-content {
             display: flex;
             justify-content: center;
-            .form-register{
-            }
+            .form-register{}
             .banner-register{
-                padding: 30px;
-                overflow: hidden;
-                width: 50%;
-                figure {
-                    img {
-                        width: 100%;
-                    }
-                }
                 @media screen and (max-width: 992px) {
                     display: none;
                   }
