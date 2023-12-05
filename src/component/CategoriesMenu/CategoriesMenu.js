@@ -4,6 +4,7 @@ import "./CategoriesMenu.scss";
 import { NavLink, useLocation, Link } from "react-router-dom";
 import { convertToSlug } from "../Header/utils";
 import { route } from "../../App";
+import { message } from "antd";
 
 export default function CategoriesMenu() {
   const [listTitle, setListTitle] = useState([]);
@@ -17,7 +18,7 @@ export default function CategoriesMenu() {
         setListTitle(res.data.content);
       })
       .catch((err) => {
-        console.log(err);
+        message.error("erorr");
       });
   }, []);
 
@@ -42,15 +43,8 @@ export default function CategoriesMenu() {
   const renderItemDetail = (listItem) => {
     return listItem.map(({ id, tenChiTiet }) => {
       return (
-        <Link
-          to={`/categories/${id}`}
-          key={id}
-          style={{ textDecoration: "none" }}
-        >
-          <span
-            className="categoriesmenu_li_jobdetail_detail_job container"
-            href="#top"
-          >
+        <Link to={`/categories/${id}`} key={id} style={{ textDecoration: "none" }}>
+          <span className="categoriesmenu_li_jobdetail_detail_job container" href="#top">
             {tenChiTiet}
           </span>
         </Link>
@@ -62,9 +56,7 @@ export default function CategoriesMenu() {
     return list.map((item, index) => {
       return (
         <div className="container-fluid flex flex-col" key={index}>
-          <p className="categoriesmenu_li_jobdetail_detail container">
-            {item.tenNhom}
-          </p>
+          <p className="categoriesmenu_li_jobdetail_detail container">{item.tenNhom}</p>
           {renderItemDetail(item.dsChiTietLoai)}
         </div>
       );

@@ -68,6 +68,9 @@ export default function Information() {
       .uploadAvatar(formData)
       .then((res) => {
         fetchInfo();
+        const user = userLocalStorage.get();
+        user.user.avatar = info.avatar;
+        userLocalStorage.set(user);
         window.location.href = "/profile";
       })
       .catch((err) => {

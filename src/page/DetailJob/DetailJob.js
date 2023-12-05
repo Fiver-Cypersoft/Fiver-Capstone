@@ -10,7 +10,6 @@ export default function DetailJob() {
   const [comment, setComment] = useState([]);
   const { user } = useSelector((state) => state.userSlice);
   const { id } = useParams();
-  console.log(id);
   const getJobById = async () => {
     try {
       const result = await loaiCVSevr.getJobDetailById(id);
@@ -41,7 +40,7 @@ export default function DetailJob() {
       const result = await loaiCVSevr.getCommentByJob(id);
       setComment(result.data?.content);
     } catch (error) {
-      console.log(error);
+      message.error("erorr");
     }
   };
 

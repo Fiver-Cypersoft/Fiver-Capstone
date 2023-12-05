@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { loaiCVSevr } from "../../api/api";
 import { useEffect, useState } from "react";
+import { message } from "antd";
 
 const Title = () => {
   const { id } = useParams();
@@ -11,14 +12,13 @@ const Title = () => {
       const result = await loaiCVSevr.getJobTypeDetail(id);
       setData(result.data?.content?.[0]);
     } catch (error) {
-      console.log(error);
+      message.error("erorr");
     }
   };
 
   useEffect(() => {
     getJobType();
   }, [id]);
-  console.log(data);
   return (
     <div className="mt-36">
       <div className="container">
@@ -35,9 +35,7 @@ const Title = () => {
                       className=" no-underline text-[#62646A] text-[18px]"
                       to={`/categories/${detail.id}`}
                     >
-                      <li className="p-1 hover:bg-[#f5f5f5]">
-                        {detail?.tenChiTiet}
-                      </li>
+                      <li className="p-1 hover:bg-[#f5f5f5]">{detail?.tenChiTiet}</li>
                     </Link>
                   ))}
                 </ul>

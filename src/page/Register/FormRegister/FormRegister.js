@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Button,
-  Checkbox,
-  DatePicker,
-  Form,
-  Input,
-  Select,
-  message,
-} from "antd";
+import { Button, Checkbox, DatePicker, Form, Input, Select, message } from "antd";
 import { LockFilled, MailFilled, PhoneFilled } from "@ant-design/icons";
 import moment from "moment";
 import { authSevr } from "../../../api/api";
@@ -68,7 +60,6 @@ const FormRegister = () => {
         navigate("/login");
       })
       .catch((err) => {
-        console.log(err);
         message.error(err.response.data.content);
       });
   };
@@ -162,9 +153,7 @@ const FormRegister = () => {
                 if (!value || getFieldValue("password") === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(
-                  new Error("The new password that you entered do not match!")
-                );
+                return Promise.reject(new Error("The new password that you entered do not match!"));
               },
             }),
           ]}
@@ -230,9 +219,7 @@ const FormRegister = () => {
           rules={[
             {
               validator: (_, value) =>
-                value
-                  ? Promise.resolve()
-                  : Promise.reject(new Error("Should accept agreement")),
+                value ? Promise.resolve() : Promise.reject(new Error("Should accept agreement")),
             },
           ]}
           {...tailFormItemLayout}

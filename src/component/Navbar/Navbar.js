@@ -8,31 +8,31 @@ import { profileUser } from "../../api/api";
 
 export default function Navbar() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [user, setUser] = useState({});
   const location = useLocation();
   const navigate = useNavigate();
-  // const { user } = useSelector((state) => state.userSlice);
-
+  const { user } = useSelector((state) => state.userSlice);
+  const [info, setinfo] = useState({});
   let handleLogOut = () => {
     userLocalStorage.remove();
-    window.location.reload();
+    window.location.href = "/";
   };
   useEffect(() => {
-    profileUser
-      .getInfo()
-      .then((res) => {
-        setUser(res.data.content);
-      })
-      .catch((err) => {
-        message.error("error");
-      });
-  }, []);
-
+    if (user) {
+      profileUser
+        .getInfo()
+        .then((res) => {
+          setinfo(res.data.content);
+        })
+        .catch((err) => {
+          message.error("loi day");
+        });
+    }
+  }, [user]);
   const renderItem = () => {
     if (user) {
       return (
         <>
-          {user?.avatar ? (
+          {info.avatar ? (
             <div className="dropdown dropstart">
               <button
                 type="button"
@@ -41,7 +41,7 @@ export default function Navbar() {
               >
                 <figure className="mb-0">
                   <img
-                    src={user?.avatar}
+                    src={info.avatar}
                     alt="avatar"
                     className="avatar"
                     style={{
@@ -68,7 +68,7 @@ export default function Navbar() {
           ) : (
             <div className="dropdown dropstart">
               <button type="button" className="btn-success text-justify " data-bs-toggle="dropdown">
-                <p className="text uppercase my-0 mx-0">{user?.name}</p>
+                <p className="text uppercase my-0 mx-0">{info.name}</p>
               </button>
               <ul className="dropdown-menu">
                 <li>
@@ -122,20 +122,20 @@ export default function Navbar() {
           {user.avatar ? (
             <figure className="mb-0 flex">
               <img
-                src={user?.avatar}
+                src={info.avatar}
                 alt="avatar"
                 className="nav_avatar"
                 style={{ borderRadius: 50, width: 50, height: 50 }}
               />
               <div className="flex flex-col items-start mx-3">
-                <h6 className="font-extrabold uppercase">{user?.name}</h6>
-                <p>{user?.email}</p>
+                <h6 className="font-extrabold uppercase">{info.name}</h6>
+                <p>{info.email}</p>
               </div>
             </figure>
           ) : (
             <div className="flex flex-col items-start my-3 mx-2">
-              <h6 className="font-extrabold uppercase">{user?.name}</h6>
-              <p>{user?.email}</p>
+              <h6 className="font-extrabold uppercase">{info.name}</h6>
+              <p>{info.email}</p>
             </div>
           )}
         </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { loaiCVSevr } from "../../api/api";
 import { Link, useParams } from "react-router-dom";
+import { message } from "antd";
 
 export default function Categories() {
   const { nameId } = useParams();
@@ -11,14 +12,13 @@ export default function Categories() {
       const result = await loaiCVSevr.getJobByCateId(nameId);
       setData(result.data?.content);
     } catch (error) {
-      console.log(error);
+      message.error("erorr");
     }
   };
 
   useEffect(() => {
     getJobByCategory();
   }, [nameId]);
-  console.log(data);
   return (
     <div className="my-36">
       <div className="container">
