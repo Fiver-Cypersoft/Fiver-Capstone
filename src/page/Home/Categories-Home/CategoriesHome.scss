@@ -1,47 +1,47 @@
 .main-categories {
-  margin-bottom: 100px;
-}
-.margin {
-  margin-top: 100px;
-  color: rgba(0,0,0,.85);
-  font-weight: 500;
-  margin-bottom: 0.5em;
-  font-size: 2rem;
-}
-.main-categories-img {
-  display: block;
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 15px;
-}
-.main-categories ul {
-  list-style: none;
-  padding: 0;
-}
-.main-categories ul li a {
-  color: #222325;
-  position: relative;
-  text-decoration: none;
-  text-align: center;
-  display: inline-block;
-}
-.main-categories ul li a::after {
-  content: "";
-  position: absolute;
-  top: 45px;
-  right: 50%;
-  -webkit-transform: translateX(50%);
-  transform: translateX(50%);
-  padding: 0 0 8px;
-  width: 48px;
-  border-bottom: 2px solid #c5c6c9;
-  border-color: 0.2s ease-in-out, padding 0.2s ease-in-out !important;
-}
-.main-categories ul li a:hover {
-  color: #222325;
-}
-.main-categories ul li a:hover::after {
-  border-color: #1dbf73;
-  border-color: 0.2s ease-in-out, padding 0.2s ease-in-out !important;
-  width: 60%;
-}
+    margin-bottom: 100px;
+  }
+  .margin {
+    margin-top: 100px;
+    color: rgba(0,0,0,.85);
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    font-size: 2rem;
+  }
+  .main-categories-img {
+    display: block;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 15px;
+  }
+  .main-categories ul {
+    list-style: none;
+    padding: 0;
+  }
+  .main-categories ul li a {
+    color: #222325;
+    position: relative;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+  }
+  .main-categories ul li a::after {
+    content: "";
+    position: absolute;
+    top: 45px;
+    right: 50%;
+    -webkit-transform: translateX(50%);
+    transform: translateX(50%);
+    padding: 0 0 8px;
+    width: 48px;
+    border-bottom: 2px solid #c5c6c9;
+    border-color: 0.2s ease-in-out, padding 0.2s ease-in-out !important;
+  }
+  .main-categories ul li a:hover {
+    color: #222325;
+  }
+  .main-categories ul li a:hover::after {
+    border-color: #1dbf73;
+    border-color: 0.2s ease-in-out, padding 0.2s ease-in-out !important;
+    width: 60%;
+  }

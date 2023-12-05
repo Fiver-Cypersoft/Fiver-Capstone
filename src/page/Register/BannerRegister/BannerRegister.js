@@ -7,7 +7,7 @@ import { formLogin, setFormLogin } from "../../../redux/slice/loginFormSlice";
 export default function BannerRegister() {
   const dispatch = useDispatch();
   return (
-    <>
+    <div className="register-images my-auto">
       <figure>
         <img src={registerImg} alt="" />
       </figure>
@@ -20,6 +20,6 @@ export default function BannerRegister() {
       >
         I am already member
       </a>
-    </>
+    </div>
   );
 }

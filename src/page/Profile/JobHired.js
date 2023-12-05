@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Flex, Space, message } from "antd";
 import { profileUser } from "../../api/api";
+import { userLocalStorage } from "../../api/localService";
 
 export default function JobHired() {
   const [jobList, setJobList] = useState([]);
@@ -40,9 +41,9 @@ export default function JobHired() {
   };
 
   const renderJobList = () => {
-    return jobList.map((job, key) => {
+    return jobList.map((job) => {
       return (
-        <Card key={key} style={{ width: "750px" }}>
+        <Card style={{ width: "750px" }}>
           <Flex>
             <img className="job-hired-image" src={job.congViec.hinhAnh} alt="" />
             <div className="pl-5">

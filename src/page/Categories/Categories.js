@@ -47,7 +47,12 @@ export default function Categories() {
                       </p>
                     </div>
                   </div>
-                  <p className="mt-4">{item?.congViec?.tenCongViec}</p>
+                  <Link
+                    to={`/jobDetail/${item.id}`}
+                    className="mt-4 no-underline block"
+                  >
+                    {item?.congViec?.tenCongViec}
+                  </Link>
                   <p className="mt-2 flex items-center gap-2 text-[#ffbe5b] font-bold">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
