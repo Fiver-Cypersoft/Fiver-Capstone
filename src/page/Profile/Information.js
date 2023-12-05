@@ -93,7 +93,6 @@ export default function Information() {
     let infoEdit = {
       id: info.id,
       name: values.name,
-      email: values.email,
       birthday: values.birthday,
       gender: values.gender,
       certification: values.certification,
@@ -153,7 +152,7 @@ export default function Information() {
                 },
               ]}
             >
-              <Input prefix={<MailOutlined />} />
+              <Input prefix={<MailOutlined />} disabled />
             </Form.Item>
 
             <Form.Item option label="Phone" name="phone" initialValue={info.phone}>
